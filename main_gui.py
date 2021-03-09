@@ -6,12 +6,15 @@ login_win = Tk()
 login_win.geometry("650x350")
 login_win.config(bg="navy")
 login_win.resizable(0, 0)
-mydb = ms.connect(user="root", password="aniket",
-                  database="test_database", host="localhost")
+
+#Connecting with Database
+mydb = ms.connect(user="root", password="your_sql_password",
+                  database="your_database_name", host="localhost")
 cur = mydb.cursor()
 
 
 def login():
+    # Put table name you used in place of 'TEST_TABLE'
     cur.execute(f"SELECT * FROM TEST_TABLE")
     login_pairs = cur.fetchall()
     input_pair = (user_ent.get(), pass_ent.get())
