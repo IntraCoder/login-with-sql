@@ -18,8 +18,10 @@ def login():
     cur.execute(f"SELECT * FROM TEST_TABLE")
     login_pairs = cur.fetchall()
     input_pair = (user_ent.get(), pass_ent.get())
-
-    if input_pair in login_pairs:
+    
+    if not all(input_pair):# Check if the tuple contains empty string/sequence
+        msg.showerror("Empty Fields", "Please fill all fields")
+    elif input_pair in login_pairs:
         msg.showinfo("Logged in!", "Login Successuful")
         login_win.destroy()
     else:
